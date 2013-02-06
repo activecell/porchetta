@@ -1,4 +1,7 @@
-server = require("http").createServer()
+express = require("express")
+app = express(express.logger())
+
+server = require("http").createServer(app)
 io = require("socket.io").listen(server)
 
 port = process.env.PORT || 5000
@@ -20,3 +23,10 @@ io.sockets.on "connection", (socket) ->
     socket.broadcast.emit("message", data)
 
     fn("received")
+
+app.use(express.bodyParser())
+
+app.post "/message", (request, response) ->
+  message = request.body.message
+  io.sockets.emit("message", message: message) if message
+  response.send("broadcasting message: #{message}")
