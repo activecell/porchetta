@@ -1,5 +1,5 @@
 express = require("express")
-app = express()
+app = express(express.logger())
 server = require("http").createServer(app)
 io = require("socket.io").listen(server)
 
