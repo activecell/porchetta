@@ -1,4 +1,5 @@
-io = require("socket.io").listen(3001)
+port = process.env.PORT or 3001
+io = require("socket.io").listen(port)
 
 io.set 'log level', 0
 
