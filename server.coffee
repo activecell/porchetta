@@ -3,7 +3,8 @@ app = express()
 server = require("http").createServer(app)
 io = require("socket.io").listen(server)
 
-server.listen(3000)
+port = process.env.PORT || 5000
+server.listen(port)
 
 # Heroku won't actually allow us to use WebSockets
 # so we have to setup polling instead.
