@@ -1,6 +1,9 @@
-io = require("socket.io").listen(3001)
+express = require("express")
+app = express()
+server = require("http").createServer(app)
+io = require("socket.io").listen(server)
 
-io.set 'log level', 0
+server.listen(3000)
 
 # Heroku won't actually allow us to use WebSockets
 # so we have to setup polling instead.
@@ -8,10 +11,18 @@ io.set 'log level', 0
 io.set "transports", ["xhr-polling"]
 io.set "polling duration", 10
 
-status = "Roasting juicy pig.."
-
 io.sockets.on "connection", (socket) ->
-  io.sockets.emit 'status', status: status
+  socket.emit("status", status: "Roasting juicy pig..")
 
-  socket.on "message", (message)->
-    socket.broadcast.emit "message", message
+  socket.on "message", (data, fn) ->
+    # send notification to the sender
+    socket.emit("message", message: "send message: #{data.message}")
+    # broadcast it to the others
+    socket.broadcast.emit("message", data)
+
+    fn("received")
+
+app.use(express.static(__dirname + '/public'))
+
+app.get '/', (request, response) ->
+  response.sendfile(__dirname + '/views/index.html')

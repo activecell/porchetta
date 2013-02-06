@@ -11,6 +11,8 @@
     },
     "dependencies": {
         "coffee-script": "*",
-        "socket.io": "*"
+        "express": "*",
+        "socket.io": "*",
+        "socket.io-client": "*"
     }
 }
