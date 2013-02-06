@@ -16,17 +16,24 @@ io.set "polling duration", 10
 io.sockets.on "connection", (socket) ->
   socket.emit("status", status: "Roasting juicy pig..")
 
-  socket.on "message", (data, fn) ->
-    # send notification to the sender
-    socket.emit("message", message: "send message: #{data.message}")
-    # broadcast it to the others
-    socket.broadcast.emit("message", data)
+  socket.on "join", (data) ->
+    socket.join(data.companyId)
 
-    fn("received")
+    socket.broadcast.to(data.companyId).send("company joined: #{data.companyId}")
+
+    socket.on "message", (data, fn) ->
+      # send notification to the sender
+      socket.emit("message", message: "send message: #{data.message}")
+      # broadcast it to the others
+      socket.broadcast.emit("message", data)
+
+      fn("received")
 
 app.use(express.bodyParser())
 
-app.post "/message", (request, response) ->
+app.post "/message/:companyId", (request, response) ->
+  companyId = request.params.companyId
   message = request.body.message
-  io.sockets.emit("message", message: message) if message
-  response.send("broadcasting message: #{message}")
+
+  io.sockets.to(companyId).emit("message", message: message) if message
+  response.send 200
