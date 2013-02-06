@@ -1,6 +1,4 @@
-express = require("express")
-app = express(express.logger())
-server = require("http").createServer(app)
+server = require("http").createServer()
 io = require("socket.io").listen(server)
 
 port = process.env.PORT || 5000
@@ -22,8 +20,3 @@ io.sockets.on "connection", (socket) ->
     socket.broadcast.emit("message", data)
 
     fn("received")
-
-app.use(express.static(__dirname + '/public'))
-
-app.get '/', (request, response) ->
-  response.sendfile(__dirname + '/views/index.html')

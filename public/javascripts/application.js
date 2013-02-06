@@ -1,6 +1,10 @@
 $(function () {
   var socket = io.connect("http://porchetta.herokuapp.com/");
 
+  socket.on("error", function(error) {
+    console.log(error);
+  });
+
   socket.on("status", function(data) {
     console.log(data.status);
   });
