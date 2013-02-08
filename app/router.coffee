@@ -18,7 +18,7 @@ app.get '/company/:companyId', (req, res)->
   else
     res.send 401
 
-#curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"action":"intuit-disconnect"}}' http://porchetta.herokuapp.com/message/sterlingcooper
+#curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"action":"intuit-connected"}}' http://porchetta.herokuapp.com/message/sterlingcooper
 app.post "/message/:companyId", (req, res) ->
   if req.body.secret is glob.config.app.secret
     companyId = req.params.companyId
@@ -34,4 +34,3 @@ app.post '*', (req, res)->
 
 app.get '*', (req, res)->
   console.log '*', req.url
-

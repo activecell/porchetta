@@ -76,16 +76,16 @@ describe 'test socket server', ->
     io2 = glob.modules.socket_client.connect url, options
   #io2.on 'connect', ->
 
-  it 'check intuit-disconnect event', (done)->
+  it 'check intuit-connected event', (done)->
     r1 = false
     r2 = false
-    io.on 'intuit-disconnect', ->
+    io.on 'intuit-connected', ->
       r1 = true
       done() if r2
-    io2.on 'intuit-disconnect', ->
+    io2.on 'intuit-connected', ->
       r2 = true
       done() if r1
-    sendMessage 'intuit-disconnect'
+    sendMessage 'intuit-connected'
 
 after (done)->
   server.kill()
