@@ -1,14 +1,16 @@
-port = process.env.PORT || 5001
-console.log port
-
 global.glob = {}
+glob.modules =
+    http: require("http")
+    socketio: require("socket.io")
+
 glob.rooms = []
+glob.config = require './config'
 
 express = require("express")
 glob.app = app = express()
 
 app.configure ->
-  app.set "port", port
+  app.set "port", glob.config.port
   #app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use express.methodOverride()
@@ -17,9 +19,9 @@ app.configure ->
 app.configure "development", ->
   app.use express.errorHandler()
 
-server = require("http").createServer(app)
+server = glob.modules.http.createServer(app)
 
-glob.io = io = require("socket.io").listen(server)
+glob.io = io = glob.modules.socketio.listen(server)
 
 io.set "transports", ["xhr-polling"]
 io.set "polling duration", 10
@@ -28,4 +30,5 @@ io.set "log level", 0
 require './router'
 glob.room = require('./socket')
 
-server.listen(port)
+server.listen glob.config.app.port, ->
+    console.log 'listen'

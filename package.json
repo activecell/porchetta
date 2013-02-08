@@ -7,11 +7,15 @@
         "npm":  "1.1.x"
     },
     "scripts": {
-        "start": "node run.js"
+        "start": "node run.js",
+        "test": "./node_modules/mocha/bin/mocha test/run.js -G -R spec -s 20 --timeout 6000;"
     },
     "dependencies": {
         "coffee-script": "*",
         "express": "*",
-        "socket.io": "*"
+        "mocha": "",
+        "socket.io": "*",
+        "socket.io-client": "*",
+        "request": "*"
     }
 }
