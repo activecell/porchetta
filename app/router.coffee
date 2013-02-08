@@ -1,12 +1,14 @@
 app = glob.app
 
 app.get '/company/:companyId', (req, res)->
-  console.log 'get room', req.params.companyId
+  companyId = req.params.companyId
+
+  console.log 'get room', companyId
   # TODO enable secret string check
-  unless glob.rooms[req.params.companyId]
+  unless glob.rooms[companyId]
     console.log 'create room'
-    glob.rooms[req.params.companyId] = new glob.room
-      company: req.params.companyId
+    glob.rooms[companyId] = new glob.room
+      company: companyId
   else
     console.log 'room exist'
   if req.query.callback
