@@ -1,7 +1,7 @@
 global.glob = {}
 glob.modules =
-    http: require("http")
-    socketio: require("socket.io")
+  http: require("http")
+  socketio: require("socket.io")
 
 glob.rooms = []
 glob.config = require './config'
@@ -11,7 +11,6 @@ glob.app = app = express()
 
 app.configure ->
   app.set "port", glob.config.port
-  #app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use express.methodOverride()
   app.use app.router
@@ -31,4 +30,4 @@ require './router'
 glob.room = require('./socket')
 
 server.listen glob.config.app.port, ->
-    console.log 'listen'
+  console.log 'listen'
