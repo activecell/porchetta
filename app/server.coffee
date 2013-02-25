@@ -22,8 +22,8 @@ server = glob.modules.http.createServer(app)
 
 glob.io = io = glob.modules.socketio.listen(server)
 
-io.set "transports", ["xhr-polling"]
-io.set "polling duration", 10
+#io.set "transports", ["xhr-polling"]
+#io.set "polling duration", 10
 io.set "log level", 0
 
 require './router'
