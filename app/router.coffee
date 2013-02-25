@@ -20,6 +20,7 @@ app.get '/company/:companyId', (req, res)->
 
 #curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"action":"intuit-connected"}}' http://porchetta.herokuapp.com/message/sterlingcooper
 app.post "/message/:companyId", (req, res) ->
+  console.log req.body
   if req.body.secret is glob.config.app.secret
     companyId = req.params.companyId
     message = req.body.message

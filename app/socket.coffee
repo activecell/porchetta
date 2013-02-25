@@ -1,8 +1,6 @@
 module.exports = class Room
   constructor: (options)->
     console.log 'init room'
-    return console.log 'no options' unless options
-
     console.log 'company:', options.company
     @room = glob.io.of("/company/#{options.company}")
     @room.on 'connection', (socket)=>
@@ -13,3 +11,4 @@ module.exports = class Room
   send: (message)->
     console.log 'room send, message:', message
     @room.emit message.action, message
+false
