@@ -23,7 +23,7 @@ app.post "/message/:companyId", (req, res) ->
   console.log 'new message', req.body
   companyId = req.params.companyId
   message = req.body.message
-  secret = message.secret
+  secret = req.body.secret
   if secret is glob.config.app.secret2
     delete message.secret
     if glob.rooms[companyId] and message
