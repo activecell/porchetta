@@ -9,6 +9,7 @@ module.exports = class Room
     options.callback() if options.callback
 
   send: (message)->
-    console.log 'room send, message:', message
+    #console.log 'room send, message:', message
+    console.log 'new message:',message.action
     @room.emit message.action, message
 false

@@ -2,6 +2,7 @@ config =
   app:
     port: process.env.PORT or 5300
     secret: "somesecretstring"
+    secret2: "this is a secret!"
     host: "http://porchetta.activecell.net"
     socketUrl: "http://porchetta.activecell.net:80/"
 
