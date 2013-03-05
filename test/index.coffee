@@ -21,7 +21,7 @@ sendMessage = (action, cb)->
     method: 'POST'
     json: true
     body:
-      secret: glob.config.app.secret
+      secret: glob.config.app.secret2
       message:
         action: action
   request req, (err, response, body)->
