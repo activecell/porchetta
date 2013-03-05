@@ -12,4 +12,3 @@ module.exports = class Room
     #console.log 'room send, message:', message
     console.log 'new message:',message.action
     @room.emit message.action, message
-false
