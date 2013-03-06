@@ -2,29 +2,31 @@ app = glob.app
 
 app.get '/company/:companyId', (req, res)->
   companyId = req.params.companyId
-
+  secret = req.headers['x-porchetta-secret']
   console.log 'get room', companyId
-  # TODO enable secret string check
-  unless glob.rooms[companyId]
-    console.log 'create room'
-    glob.rooms[companyId] = new glob.room
-      company: companyId
+  if secret and secret is glob.config.app.secret
+    unless glob.rooms[companyId]
+      console.log 'create room'
+      glob.rooms[companyId] = new glob.room
+        company: companyId
+    else
+      console.log 'room exist'
+    if req.query.callback
+      res.header "Content-Type", "application/json"
+      res.header "Charset", "utf-8"
+      res.send req.query.callback + '()'
+    else
+      res.send 200
   else
-    console.log 'room exist'
-  if req.query.callback
-    res.header "Content-Type", "application/json"
-    res.header "Charset", "utf-8"
-    res.send req.query.callback + '()'
-  else
-    res.send 200
+    res.send 401
 
 #curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"message":{"action":"intuit-connected"}}' http://porchetta.herokuapp.com/message/sterlingcooper
 app.post "/message/:companyId", (req, res) ->
   console.log 'new message', req.body
   companyId = req.params.companyId
   message = req.body.message
-  secret = req.body.secret
-  if secret is glob.config.app.secret2
+  secret = req.headers['x-porchetta-secret']
+  if secret and secret is glob.config.app.secret
     delete message.secret
     if glob.rooms[companyId] and message
       glob.rooms[companyId].send message
