@@ -18,10 +18,11 @@ server = null
 sendMessage = (action, cb)->
   req =
     url: glob.config.app.host + ':' + glob.config.app.port + '/message/' + testCompanyId
+    headers:
+        'x-porchetta-secret': glob.config.app.secret
     method: 'POST'
     json: true
     body:
-      secret: glob.config.app.secret2
       message:
         action: action
   request req, (err, response, body)->
@@ -43,8 +44,8 @@ describe 'test http api server', ->
   it 'room creation', (done)->
     req =
       url: glob.config.app.host + ':' + glob.config.app.port + '/company/' + testCompanyId
-      qs:
-        secret: glob.config.app.secret
+      headers:
+          'x-porchetta-secret': glob.config.app.secret
     request req, (err, response, body)->
       assert !err, err
       assert response.statusCode is 200, 'statuscode: ' + response.statusCode
