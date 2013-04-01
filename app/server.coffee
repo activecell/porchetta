@@ -31,4 +31,4 @@ require './router'
 glob.room = require('./socket')
 
 server.listen glob.config.app.port, ->
-  console.log 'listen'
+  console.log "listening on port #{glob.config.app.port}"
