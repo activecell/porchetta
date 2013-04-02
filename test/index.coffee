@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'testing'
+process.env.NODE_ENV = 'test'
 global.glob = {}
 
 glob.modules =
@@ -34,7 +34,7 @@ describe 'server', ->
     server.stdout.on 'data', (data)->
       data = data.toString()
       process.stdout.write data
-      if data is 'listen' or data is 'listen\n'
+      if /listening on port/.test(data)
         assert true
         done()
     server.stderr.on 'data', (data)->
