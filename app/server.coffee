@@ -20,7 +20,7 @@ app.configure "development", ->
 
 server = glob.modules.http.createServer(app)
 
-glob.io = io = glob.modules.socketio.listen(server)
+glob.io = io = glob.modules.socketio.listen(server, {log: true})
 
 #io.set "transports", ["jsonp-polling"]
 io.set "transports", ["xhr-polling"]
@@ -31,4 +31,4 @@ require './router'
 glob.room = require('./socket')
 
 server.listen glob.config.app.port, ->
-  console.log 'listen'
+  console.log "listening on port #{glob.config.app.port}"

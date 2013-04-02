@@ -1,17 +1,23 @@
 config =
   app:
-    port: process.env.PORT or 5300
+    port: process.env.PORT or 80
     secret: "this is a secret!"
-    host: "http://porchetta.activecell.net"
-    socketUrl: "http://porchetta.activecell.net:80/"
 
-if process.env.NODE_ENV is "production"
-  config.app.host = "http://porchetta.activecell.com"
-  config.app.socketUrl = "http://porchetta.activecell.net:com"
+switch process.env.NODE_ENV
+  when 'production'
+    domain = 'porchetta.activecell.com'
+  when 'staging'
+    domain = 'porchetta.activecell.net'
+  when 'development'
+    domain = 'localhost'
+    config.app.port = 3900
+  when 'test'
+    domain = 'localhost'
+    config.app.port = 3900
+  else
+    console.warn "unknown NODE_ENV: #{process.env.NODE_ENV}"
 
-else if process.env.NODE_ENV is "testing"
-  config.app.port = 3900
-  config.app.host = "http://localhost"
-  config.app.socketUrl = "http://localhost:#{config.app.port}/"
+config.app.host = "http://#{domain}"
+config.app.socketUrl = "http://#{domain}:#{config.app.port}/"
 
 module.exports = config
