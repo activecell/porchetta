@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo ""
+echo "  Starting local porchetta server for development"
+echo ""
+
+NODE_ENV=development node run.js
