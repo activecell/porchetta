@@ -1,17 +1,14 @@
 # Porchetta
 
-A bad-ass interactive grid platform.
+A bad-ass socket server for activecell.
 
-## The five-minute setup.
+## Installation
 
-Check your system for local requirements (run until it passes!):
+Check your system for local requirements with [badass]() tool:
 
-    script/bootstrap
+    badass bootstrap
 
-Run tests to ensure that all pass:
+## Development
 
-    npm test
-    
-Run the project locally:
-
-    foreman start
+  * `npm test` - to run tests to ensure that all pass:
+  * `npm start` - to run the project locally

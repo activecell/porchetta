@@ -1,21 +1,11 @@
 {
   "name": "porchetta",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "private": true,
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
-  },
   "scripts": {
-    "start": "node run.js",
-    "test": "./node_modules/mocha/bin/mocha test/run.js -G -R spec -s 20 --timeout 6000;"
+    "start": "node index.js"
   },
   "dependencies": {
-    "coffee-script": "*",
-    "express": "*",
-    "mocha": "",
-    "socket.io": "*",
-    "socket.io-client": "*",
-    "request": "*"
+    "socket.io": "~0.9.16"
   }
 }
