@@ -3,6 +3,7 @@ var port    = process.env.PORT || 4000;
 var appPort = process.env.APP_PORT || 3000;
 var io      = require('socket.io').listen(port);
 
+io.set('log level', 1); // change to 3 for debug
 io.set('authorization', function (data, accept) {
   request.get(handshake(data), function(err, res, body) {
     accept(err, res.statusCode === 204);
@@ -22,11 +23,15 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
+/**
+ * Helper to prepare request options based on request data
+ */
+
 function handshake(data) {
   var host   = data.address.address + ':' + appPort;
   var url    = 'http://' + host + '/api/v1/handshake.json';
   var jar    = request.jar();
-  var cookie = request.cookie(data.headers.cookie);
+  var cookie = request.cookie(data.headers.cookie || '');
   jar.add(cookie);
 
   return { url: url, jar: jar, json: true };
