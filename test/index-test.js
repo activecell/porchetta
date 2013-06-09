@@ -1,3 +1,5 @@
+process.env.APP_PORT = 4001;
+require('./support/fake-server');
 require('..');
 
 var expect  = require('chai').expect;
@@ -8,7 +10,7 @@ var bertCooper, rogerSterling, peteCambell;
 
 describe('Porchetta', function(){
   beforeEach(function(done) {
-    var next = _.after(2, function() {
+    var next = _.after(3, function() {
       bertCooper.emit('room', 1);
       rogerSterling.emit('room', 1);
       peteCambell.emit('room', 2);
