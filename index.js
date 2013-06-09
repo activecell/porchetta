@@ -1,5 +1,6 @@
 var request = require('request');
 var port    = process.env.PORT || 4000;
+var appPort = process.env.APP_PORT || 3000;
 var io      = require('socket.io').listen(port);
 
 io.set('authorization', function (data, accept) {
@@ -22,9 +23,10 @@ io.sockets.on('connection', function (socket) {
 });
 
 function handshake(data) {
-  var url     = 'http://sterlingcooper.activecell.local:3000/api/v1/handshake.json';
-  var jar     = request.jar();
-  var cookie  = request.cookie(data.headers.cookie);
+  var host   = data.address.address + ':' + appPort;
+  var url    = 'http://' + host + '/api/v1/handshake.json';
+  var jar    = request.jar();
+  var cookie = request.cookie(data.headers.cookie);
   jar.add(cookie);
 
   return { url: url, jar: jar, json: true };
