@@ -13,18 +13,18 @@ io.set('authorization', function (data, accept) {
 io.sockets.on('connection', function (socket) {
   var companyId = null;
 
-  socket.on('sync', function (data) {
-    socket.broadcast.to(companyId).emit('sync', data);
-  });
-
   socket.on('room', function(room) {
     companyId = room;
     socket.join(room);
   });
+
+  socket.on('sync', function (data) {
+    socket.broadcast.to(companyId).emit('sync', data);
+  });
 });
 
 /**
- * Helper to prepare request options based on request data
+ * Helper to prepare request options based on handshake data
  */
 
 function handshake(data) {
