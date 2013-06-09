@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "socket.io": "~0.9.16",
-    "request": "~2.21.0",
-    "coffee-script": "~1.6.3"
+    "request": "~2.21.0"
   }
 }
