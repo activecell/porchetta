@@ -1,15 +1,9 @@
 require('..');
 
-var expect = require('chai').expect;
-var _      = require('underscore');
-var io     = require('socket.io-client');
+var expect  = require('chai').expect;
+var _       = require('underscore');
+var connect = require('./support/connect');
 var bertCooper, rogerSterling, peteCampbell;
-
-function connect(next) {
-  var socket = io.connect('http://localhost:4000/', { 'force new connection': true });
-  socket.on('connect', next);
-  return socket;
-}
 
 describe('Porchetta', function(){
   beforeEach(function(done) {
