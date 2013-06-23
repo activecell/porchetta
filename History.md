@@ -1,7 +1,8 @@
 ## 0.3.0 / 2013-06-
 
   * move index.js to /lib
-  * ~ add viewers event
+  * emit `viewers` on join and disconnect
+  * ~ connect to real activecell.com
   * ~ add client
 
 ## 0.2.0 / 2013-06-15

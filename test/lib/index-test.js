@@ -23,10 +23,11 @@ describe('Porchetta', function(){
   });
 
   it('has `sync` event', function(done) {
-    bertCooper.emit('sync', { name: 'vendors', json: { id: 1, name: 'test' } });
+    bertCooper.emit('sync', { collection: 'vendors', action: 'add', json: { id: 1, name: 'test' } });
 
     rogerSterling.on('sync', function(data) {
-      expect(data.name).equal('vendors');
+      expect(data.collection).equal('vendors');
+      expect(data.action).equal('add');
       expect(data.json).exists;
       timeout(done);
     });
@@ -37,6 +38,28 @@ describe('Porchetta', function(){
 
     peteCambell.on('sync', function() {
       done('error: it broadcasts only in room with companyId');
+    });
+  });
+
+  it('emits `viewers` event after join', function(done) {
+    peteCambell.emit('room', 1);
+    var next = _.after(3, done);
+
+    bertCooper.on('viewers',    function(data) { expect(data).length(3); next(); });
+    rogerSterling.on('viewers', function(data) { expect(data).length(3); next(); });
+    peteCambell.on('viewers',   function(data) { expect(data).length(3); next(); });
+  });
+
+  it('emits `viewers` on disconnect', function(done) {
+    rogerSterling.disconnect();
+
+    bertCooper.on('viewers', function(data) {
+      expect(data).length(1);
+      timeout(done);
+    });
+
+    peteCambell.on('viewers', function() {
+      done('error: it emits only in related room');
     });
   });
 
