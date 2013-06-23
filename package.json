@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "./node_modules/component/bin/component install",
     "start": "node lib/index.js",
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/mocha/bin/mocha",
+    "stat": "cloc lib client --quiet && cloc test/*.js --quiet --exclude-dir=support"
   },
   "dependencies": {
     "socket.io": "~0.9.16",
