@@ -1,10 +1,10 @@
 process.env.APP_PORT = 4001;
-require('./support/fake-server');
-require('..');
+require('../support/fake-server');
+require('../../lib');
 
 var expect  = require('chai').expect;
 var _       = require('underscore');
-var connect = require('./support/connect');
+var connect = require('../support/connect');
 var timeout = function(cb) { return _.delay(cb, 20); };
 var bertCooper, rogerSterling, peteCambell;
 
