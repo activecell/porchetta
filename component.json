@@ -1,0 +1,19 @@
+{
+  "name": "porchetta",
+  "repo": "activecell/porchetta",
+  "description": "A bad-ass socked sync library.",
+  "version": "0.3.0",
+  "keywords": [
+    "sockets",
+    "real-time",
+    "activecell"
+  ],
+  "dependencies": {
+    "LearnBoost/socket.io-client": "*"
+  },
+  "development": {},
+  "main": "client/index.js",
+  "scripts": [
+    "client/index.js"
+  ]
+}

@@ -4,6 +4,7 @@
   "private": true,
   "main": "lib/index.js",
   "scripts": {
+    "postinstall": "./node_modules/component/bin/component install",
     "start": "node lib/index.js",
     "test": "./node_modules/mocha/bin/mocha"
   },
@@ -16,6 +17,7 @@
     "chai": "~1.6.1",
     "mocha": "~1.10.0",
     "underscore": "~1.4.4",
-    "express": "~3.2.6"
+    "express": "~3.2.6",
+    "component": "~0.16.4"
   }
 }
