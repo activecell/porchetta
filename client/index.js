@@ -55,9 +55,9 @@ _.extend(Porchetta.prototype, Backbone.Events);
  * @param {Backbone.Collection} collection
  */
 
-Porchetta.prototype.add = function(collection) {
-  var name = collection.name;
-  if (!name || this.colls[name]) throw new TypeError('Collection should have unique name attribute');
+Porchetta.prototype.add = function(collection, name) {
+  if (!name || this.colls[name])
+    throw new TypeError('Collection should have unique name or already added');
 
   this.colls[name] = collection;
   collection.on('add', this.handleEvent('add', name), this);

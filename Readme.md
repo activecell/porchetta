@@ -22,9 +22,9 @@ var porchetta = new Porchetta('http://localhost:4000', app.company.id);
 
 // Watch collections
 porchetta
-  .add(app.vendors)
-  .add(app.tasks)
-  .add(app.accounts);
+  .add(app.vendors, 'vendors')
+  .add(app.tasks, 'tasks')
+  .add(app.accounts, 'accounts');
 
 porchetta.on('connect', function() {
   console.log('connected to the server');
