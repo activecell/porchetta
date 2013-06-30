@@ -10,7 +10,8 @@
   ],
   "dependencies": {
     "LearnBoost/socket.io-client": "*",
-    "component/bind": "*"
+    "component/bind": "*",
+    "component/emitter": "*"
   },
   "development": {},
   "main": "client/index.js",
