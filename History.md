@@ -2,9 +2,9 @@
 
   * move index.js to /lib
   * emit `viewers` on join and disconnect
-  * ~ handshake with real activecell.com
   * ~ add client
+  * ~ handshake with real activecell.com
 
 ## 0.2.0 / 2013-06-15
 
-  * initial release
+  * full rewrite and intial release

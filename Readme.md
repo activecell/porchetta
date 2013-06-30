@@ -15,15 +15,14 @@
   Assume you started porchetta on http://localhost:4000 with `npm start`.
 
 ```js
+var porchetta = require('porchetta');
+
 // Connect to socket server
-var porchetta = new Porchetta(http://localhost:4000, app.company.id);
+porchetta.connect(http://localhost:4000, app.company.id);
 
 // Watch collections
-// app.vendors.name === 'vendors' - instance have to `name` property
-porchetta
-  .add(app.vendors)
-  .add(app.accounts)
-  .add(app.stages);
+porchetta.add(app.vendors);
+porchetta.add(app.accounts);
 ```
 
 ## One minute setup

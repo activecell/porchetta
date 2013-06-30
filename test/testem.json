@@ -4,14 +4,12 @@
   "launch_in_dev": ["phantomjs"],
   "launch_in_ci": ["phantomjs"],
   "src_files": [
-    "index.js",
-    "test/support/*",
-    "test/*.js"
+    "client/index.js",
+    "test/client/*.js"
   ],
   "serve_files": [
     "node_modules/chai/chai.js",
     "build/build.js",
-    "test/support/bootstrap.js",
-    "test/index-test.js"
+    "test/client/*.js"
   ]
 }
