@@ -23,16 +23,19 @@ module.exports = Porchetta;
  * @param {String} url
  * @param {String} room
  * @param {Object} options - socket.io-client options
- * @api public
  */
 
 function Porchetta(url, room, options) {
+  this.socket = io.connect(url, options);
   this.active = false;
   this.colls  = {};
-  this.socket = io.connect(url, options);
-
-  this.subscribe('viewers', this.onviewers);
   this.subscribe('sync', this.onsync);
+
+  // emit viewers
+  this.subscribe('viewers', function(viewers) {
+    this.active = viewers.length > 1;
+    this.emit('viewers', viewers);
+  });
 
   // join room
   this.subscribe('connect', function() {
@@ -55,7 +58,6 @@ Emitter(Porchetta.prototype);
  *     .add(app.accounts);
  *
  * @param {Backbone.Collection} collection
- * @api public
  */
 
 Porchetta.prototype.add = function(collection) {
@@ -94,15 +96,6 @@ Porchetta.prototype.onsync = function(data) {
   }
 
   this.emit(data.collection + ':' + data.event, data.json);
-};
-
-/**
- * Handles `viewers` event to change active flag.
- */
-
-Porchetta.prototype.onviewers = function(data) {
-  this.active = data.length > 1;
-  this.emit('viewers', data);
 };
 
 /**
