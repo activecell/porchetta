@@ -25,7 +25,7 @@ describe('porchetta-client', function() {
   }
 
   beforeEach(function(done) {
-    async.parallel([
+    async.series([
       function(cb) { createUser(1, cb); },
       function(cb) { createUser(1, cb); },
       function(cb) { createUser(1, cb); },
@@ -40,11 +40,17 @@ describe('porchetta-client', function() {
   });
 
   it('does not active without viewers', function(done) {
-    expect(peteCambell.porchetta.active).false;
-    createUser(2, function(err, user) {
-      expect(peteCambell.porchetta.active).true;
-      user.porchetta.socket.disconnect();
-      done();
+    peteCambell.porchetta.on('viewers', function(viewers) {
+      if (viewers.length === 1) {
+        expect(peteCambell.porchetta.active).false;
+        createUser(2, function(err, user) {
+          user.porchetta.socket.disconnect();
+        });
+      } else {
+        expect(viewers).length(2);
+        expect(peteCambell.porchetta.active).true;
+        done();
+      }
     });
   });
 
