@@ -1,14 +1,14 @@
 {
   "name": "porchetta",
-  "version": "0.2.0",
+  "version": "0.3.0",
+  "description": "Porchetta server",
   "private": true,
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "./node_modules/component/bin/component install",
+    "postinstall": "./node_modules/bower/bin/bower install",
     "start": "node lib/index.js",
+    "testem": "./node_modules/testem/testem.js -f test/testem.json",
     "test": "./node_modules/mocha/bin/mocha test/lib && ./node_modules/testem/testem.js -f test/testem.json ci",
-    "build": "./node_modules/component/bin/component build",
-    "release": "./node_modules/component/bin/component build --standalone Porchetta && mv build/build.js dist/porchetta.js",
     "stat": "cloc lib client --quiet --by-file && cloc test/**/*.js --quiet --exclude-dir=support"
   },
   "dependencies": {
@@ -21,7 +21,7 @@
     "mocha": "~1.10.0",
     "underscore": "~1.4.4",
     "express": "~3.2.6",
-    "component": "~0.16.4",
-    "testem": "~0.3.7"
+    "testem": "~0.3.7",
+    "bower": "~0.9.2"
   }
 }

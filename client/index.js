@@ -1,16 +1,11 @@
-/**
- * Local variables.
- */
-
-var io      = require('socket.io');
-var bind    = require('bind');
-var Emitter = require('emitter');
+;(function(Backbone, _) {
+'use strict';
 
 /**
  * Expose `Porchetta`.
  */
 
-module.exports = Porchetta;
+window.Porchetta = Porchetta;
 
 /**
  * Connect to porchetta server by `url`
@@ -34,18 +29,18 @@ function Porchetta(url, room, options) {
   // emit viewers
   this.subscribe('viewers', function(viewers) {
     this.active = viewers.length > 1;
-    this.emit('viewers', viewers);
+    this.trigger('viewers', viewers);
   });
 
   // join room
   this.subscribe('connect', function() {
     this.socket.emit('room', room);
-    this.emit('connect');
+    this.trigger('connect');
   });
 }
 
 // Add event-emitter options
-Emitter(Porchetta.prototype);
+_.extend(Porchetta.prototype, Backbone.Events);
 
 /**
  * Observe `collection`.
@@ -62,7 +57,7 @@ Emitter(Porchetta.prototype);
 
 Porchetta.prototype.add = function(collection) {
   var name = collection.name;
-  if (!name || collections[name]) throw new TypeError('Collection should have unique name attribute');
+  if (!name || this.colls[name]) throw new TypeError('Collection should have unique name attribute');
 
   this.colls[name] = collection;
   collection.on('add', this.handleEvent('add', name), this);
@@ -95,7 +90,7 @@ Porchetta.prototype.onsync = function(data) {
       break;
   }
 
-  this.emit(data.collection + ':' + data.event, data.json);
+  this.trigger(data.collection + ':' + data.event, data.json);
 };
 
 /**
@@ -123,5 +118,7 @@ Porchetta.prototype.handleEvent = function(event, name) {
  */
 
 Porchetta.prototype.subscribe = function(event, cb) {
-  this.socket.on(event, bind(this, cb));
+  this.socket.on(event, _.bind(this, cb));
 };
+
+}).call(this, Backbone, _);
