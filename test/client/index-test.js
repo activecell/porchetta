@@ -39,8 +39,20 @@ describe('porchetta-client', function() {
     });
   });
 
-  it('does not active without viewers');
-  it('throws error when collection is already watching');
+  it('does not active without viewers', function(done) {
+    expect(peteCambell.porchetta.active).false;
+    createUser(2, function(err, user) {
+      expect(peteCambell.porchetta.active).true;
+      user.porchetta.socket.disconnect();
+      done();
+    });
+  });
+
+  it('throws error when collection is already watching', function() {
+    expect(function() {
+      bertCooper.porchetta.add(bertCooper.vendors);
+    }).throw(/unique name attribute/);
+  });
 
   describe('emits sync', function() {
     it('on add', function(done) {
@@ -78,13 +90,7 @@ describe('porchetta-client', function() {
         expect(rogerSterling.vendors.get(2).get('name')).equal('Another random restaurant');
         complete();
       });
-      rogerSterling.porchetta.on('accounts:change', function(json) {
-        done('error: it does not return event back');
-      });
       donDrapper.porchetta.on('vendors:change accounts:change', function() { complete(); });
-      peteCambell.porchetta.on('vendors:change accounts:change', function(json) {
-        done('error: it broadcasts only in room');
-      });
     });
 
     it('on remove', function(done) {
@@ -92,10 +98,6 @@ describe('porchetta-client', function() {
       donDrapper.vendors.remove(donDrapper.vendors.models);
       bertCooper.porchetta.on('vendors:remove', function() { complete(); });
       rogerSterling.porchetta.on('vendors:remove', function() { complete(); });
-
-      donDrapper.porchetta.on('vendors:remove', function(json) {
-        done('error: it does not return event back');
-      });
     });
   });
 
