@@ -1,9 +1,9 @@
-## 0.3.0 / 2013-06-
+## 0.3.0 / 2013-06-..
 
-  * move index.js to /lib
   * emit `viewers` on join and disconnect
-  * ~ add client
-  * ~ handshake with real activecell.com
+  * add /lib for server code
+  * add /client for front-end code
+  * ~ integration with activecell
 
 ## 0.2.0 / 2013-06-15
 
