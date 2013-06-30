@@ -18,7 +18,7 @@
 var porchetta = require('porchetta');
 
 // Connect to socket server
-porchetta.connect(http://localhost:4000, app.company.id);
+porchetta.connect('http://localhost:4000', app.company.id);
 
 // Watch collections
 porchetta.add(app.vendors);

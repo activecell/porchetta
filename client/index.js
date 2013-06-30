@@ -1,4 +1,3 @@
-
 /**
  * Local variables.
  */
@@ -29,9 +28,13 @@ exports.add     = add;
 
 function connect(url, room) {
   socket = io.connect(url);
-  socket.on('connect', function() { socket.emit('room', room); });
   socket.on('viewers', viewers);
   socket.on('sync', sync);
+
+  // join room
+  socket.on('connect', function() {
+    socket.emit('room', room);
+  });
 }
 
 /**
@@ -63,8 +66,9 @@ function add(collection) {
 
 function emit(event, name) {
   return function(model, collection, options) {
+    if (!active) return; // return if only one viewers
     if (!options) options = collection; // for change event
-    if (options.socketId || !active) return; // prevent sync updates
+    if (options.socketId) return; // prevent updates after sync
 
     socket.emit('sync', {
       collection: name,
