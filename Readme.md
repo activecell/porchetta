@@ -16,9 +16,10 @@
 
 ```js
 // Connect to socket server
-var porchetta = new Porchetta({ url: http://localhost:4000, room: app.company.id });
+var porchetta = new Porchetta(http://localhost:4000, app.company.id);
 
 // Watch collections
+// app.vendors.name === 'vendors' - instance have to `name` property
 porchetta
   .add(app.vendors)
   .add(app.accounts)

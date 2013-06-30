@@ -3,7 +3,7 @@
  * Local variables.
  */
 
-var io = require('socket.io') ;
+var io = require('socket.io');
 
 /**
  * Expose `Porchetta`.
@@ -14,11 +14,20 @@ module.exports = Porchetta;
 /**
  * Create `Porchetta` instance.
  *
- * @param {Object} options
+ * Example:
+ *
+ *   var porchetta = new Porchetta(http://localhost:4000, app.company.id);
+ *
+ * @param {String} url
+ * @param {String} room
  */
 
-function Porchetta(options) {
-  // body...
+function Porchetta(url, room) {
+  var socket = io.connect(options.url);
+  socket.on('connect', function() {
+    socket.emit('room', options.room);
+  });
+  socket.on('sync', sync(socket));
 }
 
 /**
