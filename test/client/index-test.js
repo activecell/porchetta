@@ -4,6 +4,8 @@ describe('porchetta-client', function() {
   var Accounts = Backbone.Collection.extend({ name: 'accounts', url: 'api/accounts' });
   var bertCooper, rogerSterling, donDrapper, peteCambell;
 
+  sinon.stub($, 'ajax');
+
   function createUser(room, cb) {
     var vendors = new Vendors([
       { id: 1, name: 'Ambassador' },
@@ -43,7 +45,7 @@ describe('porchetta-client', function() {
   describe('emits sync', function() {
     it('on add', function(done) {
       var complete = _.after(2, done);
-      bertCooper.vendors.add({ id: 4, name: 'Another random restaurant' });
+      bertCooper.vendors.create({ id: 4, name: 'Another random restaurant' });
 
       rogerSterling.porchetta.on('vendors:add', function(json) {
         expect(rogerSterling.vendors).length(4);
@@ -59,12 +61,42 @@ describe('porchetta-client', function() {
         done('error: it does not return event back');
       });
       peteCambell.porchetta.on('vendors:add', function(json) {
-        done('error: it broadcasts only in one room');
+        done('error: it broadcasts only in room');
       });
     });
 
-    it('on change');
-    it('on remove');
+    it('on change', function(done) {
+      var complete = _.after(4, done);
+      rogerSterling.accounts.get(1).save({ type: 'Asset' });
+
+      bertCooper.porchetta.on('accounts:change', function(json) {
+        expect(bertCooper.accounts.get(1).get('type')).equal('Asset');
+        bertCooper.vendors.get(2).set({ name: 'Another random restaurant' });
+        complete();
+      });
+      rogerSterling.porchetta.on('vendors:change', function(json) {
+        expect(rogerSterling.vendors.get(2).get('name')).equal('Another random restaurant');
+        complete();
+      });
+      rogerSterling.porchetta.on('accounts:change', function(json) {
+        done('error: it does not return event back');
+      });
+      donDrapper.porchetta.on('vendors:change accounts:change', function() { complete(); });
+      peteCambell.porchetta.on('vendors:change accounts:change', function(json) {
+        done('error: it broadcasts only in room');
+      });
+    });
+
+    it('on remove', function(done) {
+      var complete = _.after(6, done);
+      donDrapper.vendors.remove(donDrapper.vendors.models);
+      bertCooper.porchetta.on('vendors:remove', function() { complete(); });
+      rogerSterling.porchetta.on('vendors:remove', function() { complete(); });
+
+      donDrapper.porchetta.on('vendors:remove', function(json) {
+        done('error: it does not return event back');
+      });
+    });
   });
 
   afterEach(function() {
