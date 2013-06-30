@@ -1,6 +1,4 @@
-process.env.APP_PORT = 4001;
-require('../support/fake-server');
-require('../../lib');
+require('../support');
 
 describe('Porchetta', function(){
   var expect  = require('chai').expect;

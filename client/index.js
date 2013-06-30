@@ -118,7 +118,7 @@ Porchetta.prototype.handleEvent = function(event, name) {
  */
 
 Porchetta.prototype.subscribe = function(event, cb) {
-  this.socket.on(event, _.bind(this, cb));
+  this.socket.on(event, _.bind(cb, this));
 };
 
 }).call(this, Backbone, _);
