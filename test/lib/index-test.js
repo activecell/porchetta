@@ -23,11 +23,11 @@ describe('Porchetta', function(){
   });
 
   it('has `sync` event', function(done) {
-    bertCooper.emit('sync', { collection: 'vendors', action: 'add', json: { id: 1, name: 'test' } });
+    bertCooper.emit('sync', { collection: 'vendors', event: 'add', json: { id: 1, name: 'test' } });
 
     rogerSterling.on('sync', function(data) {
       expect(data.collection).equal('vendors');
-      expect(data.action).equal('add');
+      expect(data.event).equal('add');
       expect(data.json).exists;
       timeout(done);
     });

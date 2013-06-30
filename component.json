@@ -9,7 +9,8 @@
     "activecell"
   ],
   "dependencies": {
-    "LearnBoost/socket.io-client": "*"
+    "LearnBoost/socket.io-client": "*",
+    "component/bind": "*"
   },
   "development": {},
   "main": "client/index.js",
