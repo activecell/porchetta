@@ -1,15 +1,15 @@
 {
   "framework": "mocha",
-  "before_tests": "npm run build",
   "launch_in_dev": ["phantomjs"],
   "launch_in_ci": ["phantomjs"],
   "src_files": [
-    "client/index.js",
-    "test/client/*.js"
-  ],
-  "serve_files": [
-    "node_modules/chai/chai.js",
-    "build/build.js",
+    "components/jquery/jquery.js",
+    "components/underscore/underscore.js",
+    "components/backbone/backbone.js",
+    "components/chai/chai.js",
+    "components/async/lib/async.js",
+    "components/socket.io-client/dist/socket.io.js",
+    "client/*.js",
     "test/client/*.js"
   ]
 }
