@@ -6,9 +6,7 @@
 
 ## Installation
 
-  Copy [dist/porchetta.js](https://github.com/activecell/porchetta/blob/master/dist/porchetta.js) to your vendor folder or
-
-    $ component install activecell/porchetta
+  Copy [client/index.js](https://github.com/activecell/porchetta/blob/master/client/index.js) and [socket.io-client.js](https://github.com/LearnBoost/socket.io-client/blob/0.9/dist/socket.io.js) to your vendor folder.
 
 ## Example
 
