@@ -12,33 +12,28 @@
 
   Assume you started porchetta on http://localhost:4000 with `npm start`.
 
-```js
-var Porchetta = require('porchetta');
+```coffee
+porchetta = new Porchetta('http://localhost:4000', app.company.id);
 
-// Connect to socket server
-var porchetta = new Porchetta('http://localhost:4000', app.company.id);
-
-// Watch collections
+# Watch collections
 porchetta
   .add(app.vendors, 'vendors')
   .add(app.tasks, 'tasks')
-  .add(app.accounts, 'accounts');
+  .add(app.accounts, 'accounts')
 
-porchetta.on('connect', function() {
-  console.log('connected to the server');
-});
+porchetta.on 'connect', ->
+  console.log('connected to the server')
 
-porchetta.on('viewers', function(viewers) {
-  if (viewers.length > 1)
+porchetta.on 'viewers', (viewers) ->
+  if viewers.length > 1
     console.log('Porchetta is active for ' + viewers.length + ' viewers');
   else
     console.log('Porchetta is inactive');
-})
 
-// Porchetta emits event after every sync with pattern: <collection-name>:<event>
-porchetta.on('vendors:add', function(json) { console.log('new vendor added', json); });
-porchetta.on('tasks:change', function(json) { console.log('task changed', json); });
-porchetta.on('accounts:remove', function(json) { console.log('account removed', json); });
+# Porchetta emits event after every sync with pattern: <collection-name>:<event>
+porchetta.on 'vendors:add',     (json) -> console.log('new vendor added', json)
+porchetta.on 'tasks:change',    (json) -> console.log('task changed', json)
+porchetta.on 'accounts:remove', (json) -> console.log('account removed', json)
 ```
 
 ## One minute setup
