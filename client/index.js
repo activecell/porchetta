@@ -43,8 +43,7 @@ function Porchetta(url, room, options) {
 _.extend(Porchetta.prototype, Backbone.Events);
 
 /**
- * Observe `collection`.
- * Collection's instance should have property name.
+ * Observe `collection` changes.
  *
  * Example:
  *
@@ -55,7 +54,7 @@ _.extend(Porchetta.prototype, Backbone.Events);
  * @param {Backbone.Collection} collection
  */
 
-Porchetta.prototype.add = function(collection, name) {
+Porchetta.prototype.addCollection = function(collection, name) {
   if (!name || this.colls[name])
     throw new TypeError('Collection should have unique name or already added');
 

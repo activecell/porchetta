@@ -17,8 +17,8 @@ describe('porchetta-client', function() {
       { id: 2, name: 'Accounts Receivable', type: 'Asset' }
     ]);
     var porchetta = new Porchetta('http://localhost:4000', room, { 'force new connection': true })
-      .add(vendors, 'vendors')
-      .add(accounts, 'accounts');
+      .addCollection(vendors, 'vendors')
+      .addCollection(accounts, 'accounts');
     porchetta.on('connect', function() {
       cb(null, { porchetta: porchetta, vendors: vendors, accounts: accounts });
     });
@@ -56,7 +56,7 @@ describe('porchetta-client', function() {
 
   it('throws error when collection is already watching', function() {
     expect(function() {
-      bertCooper.porchetta.add(bertCooper.vendors);
+      bertCooper.porchetta.addCollection(bertCooper.vendors);
     }).throw(/unique name or already added/);
   });
 
