@@ -1,6 +1,7 @@
 # TODO:
 
   * `addModel` method
+  * handshake with activecell
 
 ## 0.3.0 / 2013-07-05
 
@@ -8,7 +9,6 @@
   * add /lib for server code
   * add /client for front-end code
   * update Readme.md
-  * ~ integration with activecell
 
 ## 0.2.0 / 2013-06-15
 
