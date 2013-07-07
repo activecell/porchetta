@@ -112,7 +112,17 @@ describe('porchetta-client', function() {
   });
 
   describe('#addModel', function() {
+    it('on change', function(done) {
+      var complete = _.after(2, done);
+      bertCooper.company.set({ name: 'New company' });
 
+      rogerSterling.porchetta.on('company:change', function(json) {
+        expect(rogerSterling.company.get('name')).equal('New company');
+        complete();
+      });
+
+      donDrapper.porchetta.on('company:change', function() { complete(); });
+    });
   });
 
   afterEach(function() {

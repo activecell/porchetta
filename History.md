@@ -1,11 +1,11 @@
 ## 0.4.0 / 2013-07-..
 
-  * ~ `addModel` method
+  * `addModel` method
   * ~ add https server to produce refresh event
   * ~ add post /refresh/:roomId + auth key
   * ~ add correct configs for porchetta-client in production
-  * ~ handshake with activecell
   * ~ deploy to nodejitsu
+  * ~ handshake with activecell
 
 ## 0.3.0 / 2013-07-05
 

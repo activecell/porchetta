@@ -79,7 +79,7 @@ porchetta.on 'connect', ->
 
 ### porchetta#addModel(model, name)
 
-  Sync Backbone.Model instance through porchetta-server. It tracks `change` and `destroy` event. Logic is similar to `addCollection`.
+  Sync Backbone.Model instance through porchetta-server. It tracks only `change` event. Logic is similar to `addCollection`.
 
 ## One minute setup
 

@@ -81,7 +81,6 @@ Porchetta.prototype.addModel = function(model, name) {
 
   this.objects[name] = model;
   model.on('change', this.handleEvent('change', name), this);
-  model.on('remove', this.handleEvent('destroy', name), this);
 
   return this;
 };
@@ -91,7 +90,8 @@ Porchetta.prototype.addModel = function(model, name) {
  */
 
 Porchetta.prototype.onsync = function(data) {
-  var collection = this.objects[data.collection], model;
+  var collection = this.objects[data.name];
+  var model = _.isFunction(collection.isNew) ? collection : null;
 
   switch (data.event) {
     case 'add':
@@ -99,7 +99,7 @@ Porchetta.prototype.onsync = function(data) {
       break;
 
     case 'change':
-      model = collection.get(data.json.id);
+      if (!model) model = collection.get(data.json.id);
       if (model) model.set(data.json, { socketId: data.socketId });
       break;
 
@@ -109,7 +109,7 @@ Porchetta.prototype.onsync = function(data) {
       break;
   }
 
-  this.trigger(data.collection + ':' + data.event, data.json);
+  this.trigger(data.name + ':' + data.event, data.json);
 };
 
 /**
@@ -124,7 +124,7 @@ Porchetta.prototype.handleEvent = function(event, name) {
     if (options.socketId) return; // prevent updates after sync
 
     this.socket.emit('sync', {
-      collection: name,
+      name: name,
       event: event,
       socketId: this.socket.socket.sessionid,
       json: model.toJSON()
