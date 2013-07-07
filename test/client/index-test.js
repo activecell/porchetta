@@ -2,6 +2,7 @@ describe('porchetta-client', function() {
   var expect   = chai.expect;
   var Vendors  = Backbone.Collection.extend({ name: 'vendors', url: 'api/vendors' });
   var Accounts = Backbone.Collection.extend({ name: 'accounts', url: 'api/accounts' });
+  var Company  = Backbone.Model.extend({ urlRoot: 'api/company' });
   var bertCooper, rogerSterling, donDrapper, peteCambell;
 
   sinon.stub($, 'ajax');
@@ -16,12 +17,15 @@ describe('porchetta-client', function() {
       { id: 1, name: 'Accounts Payable', type: 'Liability' },
       { id: 2, name: 'Accounts Receivable', type: 'Asset' }
     ]);
+    var company = new Company({ id: 1, name: 'Sterling Cooper Price' });
+
     var porchetta = new Porchetta('http://localhost:4000', room, { 'force new connection': true })
       .addCollection(vendors, 'vendors')
-      .addCollection(accounts, 'accounts');
-    porchetta.on('connect', function() {
-      cb(null, { porchetta: porchetta, vendors: vendors, accounts: accounts });
-    });
+      .addCollection(accounts, 'accounts')
+      .addModel(company, 'company')
+      .on('connect', function() {
+        cb(null, { porchetta: porchetta, vendors: vendors, accounts: accounts, company: company });
+      });
   }
 
   beforeEach(function(done) {
@@ -60,7 +64,7 @@ describe('porchetta-client', function() {
     }).throw(/unique name or already added/);
   });
 
-  describe('emits sync', function() {
+  describe('#addCollection', function() {
     it('on add', function(done) {
       var complete = _.after(2, done);
       bertCooper.vendors.create({ id: 4, name: 'Another random restaurant' });
@@ -105,6 +109,10 @@ describe('porchetta-client', function() {
       bertCooper.porchetta.on('vendors:remove', function() { complete(); });
       rogerSterling.porchetta.on('vendors:remove', function() { complete(); });
     });
+  });
+
+  describe('#addModel', function() {
+
   });
 
   afterEach(function() {
