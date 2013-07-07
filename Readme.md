@@ -75,12 +75,11 @@ porchetta.on 'connect', ->
 
 ### porchetta#addCollection(collection, name)
 
-  Sync events(add, change, remove) from this collection with other connected clients.
-  `name` should be unique identificator.
+  Sync Backbone.Collection events: `add`, `change`, `remove`. Make sure that `name` is unique identificator.
 
 ### porchetta#addModel(model, name)
 
-  **coming soon**
+  Sync Backbone.Model instance through porchetta-server. It tracks `change` and `destroy` event. Logic is similar to `addCollection`.
 
 ## One minute setup
 

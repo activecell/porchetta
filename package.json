@@ -1,6 +1,6 @@
 {
   "name": "porchetta",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Porchetta server",
   "private": true,
   "main": "lib/index.js",
