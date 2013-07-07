@@ -21,9 +21,9 @@ window.Porchetta = Porchetta;
  */
 
 function Porchetta(url, room, options) {
-  this.socket = io.connect(url, options);
-  this.active = false;
-  this.colls  = {};
+  this.socket  = io.connect(url, options);
+  this.active  = false;
+  this.objects = {};
   this.subscribe('sync', this.onsync);
 
   // emit viewers
@@ -48,20 +48,40 @@ _.extend(Porchetta.prototype, Backbone.Events);
  * Example:
  *
  *   porchetta
- *     .add(app.vendors);
- *     .add(app.accounts);
+ *     .addCollection(app.vendors);
+ *     .addCollection(app.accounts);
  *
  * @param {Backbone.Collection} collection
+ * @param {String} name
  */
 
 Porchetta.prototype.addCollection = function(collection, name) {
-  if (!name || this.colls[name])
-    throw new TypeError('Collection should have unique name or already added');
+  if (!name || this.objects[name])
+    throw new TypeError('Collection has to have unique name or already added');
 
-  this.colls[name] = collection;
+  this.objects[name] = collection;
   collection.on('add', this.handleEvent('add', name), this);
   collection.on('change', this.handleEvent('change', name), this);
   collection.on('remove', this.handleEvent('remove', name), this);
+
+  return this;
+};
+
+/**
+ * Observe `model` changes.
+ * Logic is similar to `addCollection` method.
+ *
+ * @param {Backbone.Model} model
+ * @param {String} name
+ */
+
+Porchetta.prototype.addModel = function(model, name) {
+  if (!name || this.objects[name])
+    throw new TypeError('Model has to have unique name or already added');
+
+  this.objects[name] = model;
+  model.on('change', this.handleEvent('change', name), this);
+  model.on('remove', this.handleEvent('destroy', name), this);
 
   return this;
 };
@@ -71,7 +91,7 @@ Porchetta.prototype.addCollection = function(collection, name) {
  */
 
 Porchetta.prototype.onsync = function(data) {
-  var collection = this.colls[data.collection], model;
+  var collection = this.objects[data.collection], model;
 
   switch (data.event) {
     case 'add':
