@@ -16,6 +16,8 @@ ORIGIN="http://localhost:4001" PORT=5000 npm start
 
 ## Installation
 
+    bower install git@github.com:activecell/porchetta.git#0.x.x --save
+
   Copy [client/index.js](https://github.com/activecell/porchetta/blob/master/client/index.js) and [socket.io-client.js](https://github.com/LearnBoost/socket.io-client/blob/0.9/dist/socket.io.js) to your vendor folder.
 
 ## Example
