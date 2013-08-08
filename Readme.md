@@ -20,7 +20,14 @@ Development
   * `npm run testem` - start development server for client
   * `npm run watch` - start development server for server
   * `npm run stat` - see how much code it is.
-  * `jitsu deploy -r 0.4.0` - deploy specific version to nodejitsu. Before you need install [jitsu](https://github.com/nodejitsu/jitsu) locally and login as activecell user (ask @adamrneary for password).
+
+### Deploy
+
+  In order to deploy you need install [jitsu](https://github.com/nodejitsu/jitsu) locally (`npm install -g jitsu`) and login as activecell user (ask @adamrneary for password).
+
+    $ jitsu deploy -r 0.4.0
+
+  Option `-r` helps prevent ugly rewrite of package.json. Also nodejitsu does not support node 0.10.x, be careful :/
 
 ## Installation
 
