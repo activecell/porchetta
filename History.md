@@ -3,8 +3,8 @@
   * `addModel` method
   * deploy to nodejitsu: http://porchetta.jitsu.com/
   * ~ switch domain to https://porchetta.activecell.com/
-  * ~ add https server to produce refresh event
-  * ~ add post /refresh/:roomId + auth key
+  * ~ add https://porchetta.activecell.org/ for staging and local development
+  * ~ add refresh event /refresh/:roomId + auth key
   * ~ real handshake with activecell
 
 ## 0.3.0 / 2013-07-05
