@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "description": "Porchetta server",
   "private": true,
+  "repository": "git://github.com:activecell/porchetta.git",
   "main": "lib/index.js",
   "scripts": {
     "postinstall": "[[ -z \"${NODE_ENV+xxx}\" ]] && ./node_modules/bower/bin/bower install --quiet",
@@ -16,12 +17,17 @@
     "superagent": "~0.15.1"
   },
   "devDependencies": {
-    "bower": "~0.10.0",
-    "socket.io-client": "~0.9.16",
-    "chai": "~1.6.1",
-    "mocha": "~1.10.0",
-    "underscore": "~1.4.4",
-    "express": "~3.2.6",
-    "testem": "~0.3.7"
-  }
+    "bower": "~1.0.x",
+    "socket.io-client": "0.9.16",
+    "chai": "~1.7.x",
+    "mocha": "~1.12.x",
+    "underscore": "~1.5.x",
+    "express": "~3.2.x",
+    "testem": "~0.3.x",
+    "nodemon": "~0.7.10"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "subdomain": "porchetta"
 }
