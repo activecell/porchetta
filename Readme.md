@@ -1,26 +1,35 @@
 # Porchetta [![Build Status](https://circleci.com/gh/activecell/porchetta.png?circle-token=e4e94a5aa232fb270ea22a5f32a34e3db5e75b61)](https://circleci.com/gh/activecell/porchetta)
 
-  A bad-ass socket server for activecell. It does not require specific observers on rails side and sync any type of data.
-  Also it provides client, that syncs instances of Backbone.Collection or Backbone.Model.
+  A bad-ass socket server for activecell. It has 2 parts: client & server.
 
-## Start server
+Development
+===========
 
-  It's so easy: `npm install && npm start`. Server accepts 2 additional params:
+  Use [History.md](https://github.com/activecell/porchetta/blob/master/History.md) and versions to log your actions.
 
-  * PORT - [default: 4000] server's port
-  * ORIGIN - [default: headers.origin] use to set http origin header on handshake with activecell server.
+### One minute setup
 
-```bash
-ORIGIN="http://localhost:4001" PORT=5000 npm start
-```
+  * `npm install && npm run install-client` - to install dependencies
+  * `npm test` - to run tests and ensure that all pass.
+  * `npm run watch` - to start development server locally on http://localhost:4000. It restarts on every change.
+
+### Helpful commands
+
+  * `npm run test-client` - run only client's tests
+  * `npm run test-server` - run only server's tests
+  * `npm run testem` - start development server for client
+  * `npm run watch` - start development server for server
+  * `npm run stat` - see how much code it is.
+  * `jitsu deploy -r 0.4.0` - deploy specific version to nodejitsu. Before you need install [jitsu](https://github.com/nodejitsu/jitsu) locally and login as activecell user (ask @adamrneary for password).
 
 ## Installation
 
-    bower install git@github.com:activecell/porchetta.git#0.x.x --save
+    $ bower install git@github.com:activecell/porchetta.git#0.x.x --save
 
-  Copy [client/index.js](https://github.com/activecell/porchetta/blob/master/client/index.js) and [socket.io-client.js](https://github.com/LearnBoost/socket.io-client/blob/0.9/dist/socket.io.js) to your vendor folder.
+  Or copy [client/index.js](https://github.com/activecell/porchetta/blob/master/client/index.js) and [socket.io-client.js](https://github.com/LearnBoost/socket.io-client/blob/0.9/dist/socket.io.js) to vendor folder.
 
-## Example
+Example
+=======
 
   Assume you started porchetta-server on http://localhost:4000 with `npm start`.
 
@@ -50,7 +59,8 @@ porchetta.on 'tasks:change',    (json) -> console.log('task changed', json)
 porchetta.on 'accounts:remove', (json) -> console.log('account removed', json)
 ```
 
-## API
+API - Client
+============
 
   In general porchetta-client is wrapper around [socket.io-client](https://github.com/LearnBoost/socket.io-client).
   Porchetta starts to work when has more than one connected user.
@@ -83,8 +93,14 @@ porchetta.on 'connect', ->
 
   Sync Backbone.Model instance through porchetta-server. It tracks only `change` event. Logic is similar to `addCollection`.
 
-## One minute setup
+API - Server
+============
 
-  * `badass bootstrap` - to check requirements with [badass](https://github.com/activecell/badass) tool.
-  * `npm test` - to run tests to ensure that all pass.
-  * `npm start` - to start server locally on http://localhost:4000.
+  It's so easy to start server `npm install && npm start`. Server accepts 2 additional params:
+
+  * PORT - [default: 4000] server's port
+  * ORIGIN - [default: headers.origin] use to set http origin header on handshake with activecell server.
+
+```bash
+ORIGIN="http://localhost:4001" PORT=5000 npm start
+```

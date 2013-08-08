@@ -6,7 +6,7 @@
   "repository": "git://github.com:activecell/porchetta.git",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "[[ -z \"${NODE_ENV+xxx}\" ]] && bower install --quiet",
+    "install-client": "bower install --quiet",
     "start": "node lib/index.js",
     "watch": "nodemon --quiet --watch lib lib/index.js",
     "test": "npm run test-server && npm run test-client",
@@ -30,7 +30,7 @@
     "nodemon": "~0.7.10"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": "v0.8.x"
   },
   "subdomain": "porchetta"
 }
