@@ -6,14 +6,17 @@
   "repository": "git://github.com:activecell/porchetta.git",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "[[ -z \"${NODE_ENV+xxx}\" ]] && ./node_modules/bower/bin/bower install --quiet",
+    "postinstall": "[[ -z \"${NODE_ENV+xxx}\" ]] && bower install --quiet",
     "start": "node lib/index.js",
-    "testem": "./test/support/start && ./node_modules/testem/testem.js -f test/testem.json && ./test/support/stop",
-    "test": "./node_modules/mocha/bin/mocha test/lib && ./test/support/start && ./node_modules/testem/testem.js -f test/testem.json ci && ./test/support/stop",
+    "watch": "nodemon --quiet --watch lib lib/index.js",
+    "test": "npm run test-server && npm run test-client",
+    "test-server": "mocha test/lib",
+    "testem": "./test/support/start && testem -f test/testem.json && ./test/support/stop",
+    "test-client": "./test/support/start && testem -f test/testem.json ci && ./test/support/stop",
     "stat": "cloc lib client --quiet --by-file && cloc test/**/*.js --quiet --exclude-dir=support"
   },
   "dependencies": {
-    "socket.io": "~0.9.16",
+    "socket.io": "0.9.16",
     "superagent": "~0.15.1"
   },
   "devDependencies": {
