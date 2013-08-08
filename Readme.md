@@ -3,7 +3,7 @@
   A bad-ass socket server for activecell. It has 2 parts: client & server.
 
 Development
-===========
+-----------
 
   Use [History.md](https://github.com/activecell/porchetta/blob/master/History.md) and versions to log your actions.
 
@@ -27,7 +27,12 @@ Development
 
     $ jitsu deploy -r 0.4.0
 
-  Option `-r` helps prevent ugly rewrite of package.json. Also nodejitsu does not support node 0.10.x, be careful :/
+  Option `-r` helps prevent ugly rewrite of package.json. Also nodejitsu does not support node 0.10.x, be careful.
+
+  Some useful commands:
+
+  * `jitsu apps view porchetta` - information about app;
+  * `jitsu logs app porchetta 50` - show logs.
 
 ## Installation
 
@@ -36,7 +41,7 @@ Development
   Or copy [client/index.js](https://github.com/activecell/porchetta/blob/master/client/index.js) and [socket.io-client.js](https://github.com/LearnBoost/socket.io-client/blob/0.9/dist/socket.io.js) to vendor folder.
 
 Example
-=======
+-------
 
   Assume you started porchetta-server on http://localhost:4000 with `npm start`.
 
@@ -67,7 +72,7 @@ porchetta.on 'accounts:remove', (json) -> console.log('account removed', json)
 ```
 
 API - Client
-============
+------------
 
   In general porchetta-client is wrapper around [socket.io-client](https://github.com/LearnBoost/socket.io-client).
   Porchetta starts to work when has more than one connected user.
@@ -101,7 +106,7 @@ porchetta.on 'connect', ->
   Sync Backbone.Model instance through porchetta-server. It tracks only `change` event. Logic is similar to `addCollection`.
 
 API - Server
-============
+------------
 
   It's so easy to start server `npm install && npm start`. Server accepts 2 additional params:
 
