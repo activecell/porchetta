@@ -9,7 +9,7 @@ Development
 
 ### One minute setup
 
-  * `npm install && npm run install-client` - to install dependencies
+  * `npm install` - to install dependencies
   * `npm test` - to run tests and ensure that all pass.
   * `npm run watch` - to start development server locally on http://localhost:4000. It restarts on every change.
 

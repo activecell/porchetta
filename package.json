@@ -6,7 +6,7 @@
   "repository": "git://github.com:activecell/porchetta.git",
   "main": "lib/index.js",
   "scripts": {
-    "install-client": "bower install --quiet",
+    "postinstall": "if which bower >/dev/null; then bower install --quiet; fi",
     "start": "node lib/index.js",
     "watch": "nodemon --quiet --watch lib lib/index.js",
     "test": "npm run test-server && npm run test-client",
