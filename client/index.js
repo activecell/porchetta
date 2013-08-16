@@ -1,4 +1,4 @@
-;(function(Backbone, _) {
+;(function(Backbone, _, io) {
 'use strict';
 
 /**
@@ -140,4 +140,4 @@ Porchetta.prototype.subscribe = function(event, cb) {
   this.socket.on(event, _.bind(cb, this));
 };
 
-}).call(this, Backbone, _);
+}).call(this, Backbone, _, io);
