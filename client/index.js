@@ -121,7 +121,7 @@ Porchetta.prototype.handleEvent = function(event, name) {
   return function(model, collection, options) {
     if (!this.active) return; // return if only one viewer
     if (!options) options = collection; // for change event
-    if (options.socketId) return; // prevent updates after sync
+    if (options && options.socketId) return; // prevent updates after sync
 
     this.socket.emit('sync', {
       name: name,
