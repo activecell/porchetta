@@ -33,5 +33,8 @@
   "engines": {
     "node": "v0.8.x"
   },
-  "subdomain": "porchetta"
+  "subdomain": "porchetta",
+  "domains": [
+    "porchetta.activecell.com"
+  ]
 }
