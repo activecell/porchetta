@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+const exec    = require('child_process').exec;
+const version = require('../package').version;
+
+// `-r` helps prevent ugly rewrite of package.json.
+exec('jitsu deploy -r ' + version);

@@ -25,14 +25,10 @@ Development
 
   In order to deploy you need install [jitsu](https://github.com/nodejitsu/jitsu) locally (`npm install -g jitsu`) and login as activecell user (ask @adamrneary for password).
 
-    $ jitsu deploy -r 0.4.0
+    $ ./script/deploy-production
+    $ ./script/deploy-staging
 
-  Option `-r` helps prevent ugly rewrite of package.json. Also nodejitsu does not support node 0.10.x, be careful.
-
-  Some useful commands:
-
-  * `jitsu apps view porchetta` - information about app;
-  * `jitsu logs app porchetta 50` - show logs.
+  This scripts helps to manage ugly nodejitsu restrictions: (rewrite of package.json, and not ability to deploy staging.) Nodejitsu does not support node 0.10.x, be careful. (Why do we use nodejitsu? Because they only one option, heroku sucks with websoket support.)
 
 ## Installation
 
