@@ -1,7 +1,8 @@
-## 0.4.0 / 2013-08-..
+## 0.4.0 / 2013-09-09
 
-  * `addModel` method
-  * deploy to nodejitsu: http://porchetta.jitsu.com/
+  * deploy to nodejitsu
+  * refactoring
+  * move porchetta-client to separate repo
 
 ## 0.3.0 / 2013-07-05
 

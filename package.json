@@ -3,38 +3,30 @@
   "version": "0.4.0",
   "description": "Porchetta server",
   "private": true,
-  "repository": "git://github.com:activecell/porchetta.git",
+  "repository": "git://github.com:activecell/porchetta-server.git",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "if which bower >/dev/null; then bower install --quiet; fi",
     "start": "node lib/index.js",
     "watch": "nodemon --quiet --watch lib lib/index.js",
-    "test": "npm run test-server && npm run test-client",
-    "test-server": "mocha test/lib",
-    "testem": "./test/support/start && testem -f test/testem.json && ./test/support/stop",
-    "test-client": "./test/support/start && testem -f test/testem.json ci && ./test/support/stop",
-    "stat": "cloc lib client --quiet --by-file && cloc test/**/*.js --quiet --exclude-dir=support"
+    "test": "mocha",
+    "stat": "cloc lib --quiet --by-file && cloc test/*.js --quiet --by-file"
   },
   "dependencies": {
     "socket.io": "0.9.16",
-    "superagent": "~0.15.1",
     "express": "~3.3.4"
   },
   "devDependencies": {
-    "bower": "~1.0.x",
-    "socket.io-client": "0.9.16",
-    "chai": "~1.7.x",
+    "nodemon": "~0.7.10",
     "mocha": "~1.12.x",
-    "underscore": "~1.5.x",
-    "express": "~3.2.x",
-    "testem": "~0.3.x",
-    "nodemon": "~0.7.10"
+    "chai": "1.7.x",
+    "socket.io-client": "0.9.16",
+    "underscore": "~1.5.x"
   },
   "engines": {
-    "node": "v0.8.x"
+    "node": "v0.10.x"
   },
   "subdomain": "porchetta",
   "domains": [
-    "porchetta.activecell.com"
+    "porchetta.activecell.net"
   ]
 }

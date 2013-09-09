@@ -1,10 +1,20 @@
-require('../support');
+require('../lib');
+
+const io      = require('socket.io-client');
+const expect  = require('chai').expect;
+const _       = require('underscore');
+
+function timeout(cb) {
+  return _.delay(cb, 20);
+}
+
+function connect(next) {
+  const socket = io.connect('http://localhost:4000/', { 'force new connection': true });
+  socket.on('connect', next);
+  return socket;
+}
 
 describe('Porchetta', function(){
-  var expect  = require('chai').expect;
-  var _       = require('underscore');
-  var connect = require('../support/connect');
-  var timeout = function(cb) { return _.delay(cb, 20); };
   var bertCooper, rogerSterling, peteCambell;
 
   beforeEach(function(done) {

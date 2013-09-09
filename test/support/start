@@ -1,4 +1,0 @@
-#!/bin/bash
-if [[ ! $(lsof -n -i:4001) ]]; then
-  nohup node test/support/index.js > /dev/null &
-fi
