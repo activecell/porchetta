@@ -20,7 +20,8 @@
     "mocha": "*",
     "chai": "*",
     "socket.io-client": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "shelljs": "~0.2.6"
   },
   "engines": {
     "node": "v0.10.x"
