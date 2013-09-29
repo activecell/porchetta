@@ -20,7 +20,10 @@ Development
     $ ./script/deploy-production
     $ ./script/deploy-staging
 
-  This scripts helps to manage ugly nodejitsu restrictions: rewrite of package.json, and not ability to deploy staging.
+  This scripts helps to manage ugly nodejitsu restrictions: rewrite of package.json, and not ability to deploy staging. More control can be found on https://webops.nodejitsu.com/apps/porchetta. Available domains:
+
+  * As a production server we use: https://porchetta.activecell.com/
+  * As a staging/development server we use: https://porchetta-staging.nodejitsu.com/ (it also can be available at porchetta.activecell.net, but I didn't find valid ssl keys.)
 
 API
 ---

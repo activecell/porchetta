@@ -1,9 +1,9 @@
 ## 0.4.0 / 2013-09-29
 
-  * deploy to nodejitsu
   * refactoring
   * move porchetta-client to separate repo
   * update dependencies
+  * deploy production|staging servers to nodejitsu
 
 ## 0.3.0 / 2013-07-05
 
