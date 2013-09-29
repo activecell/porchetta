@@ -1,6 +1,19 @@
-# Porchetta Server [![Build Status](https://circleci.com/gh/activecell/porchetta-server.png?circle-token=e4e94a5aa232fb270ea22a5f32a34e3db5e75b61)](https://circleci.com/gh/activecell/porchetta-server)
+# Porchetta Server [![Build Status](https://circleci.com/gh/activecell/porchetta.png?circle-token=e4e94a5aa232fb270ea22a5f32a34e3db5e75b61)](https://circleci.com/gh/activecell/porchetta)
 
   A bad-ass socket server for activecell.
+  Use [porchetta-client](https://github.com/activecell/porchetta-client) to work with on client side.
+
+Start Server
+---
+
+  It's so easy to start server `npm start`. Server accepts 2 additional params:
+
+  * PORT - [default: 4000] server's port
+  * LOG_LEVEL - [default: 1] [socket.io log level](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO): 1 - warn, 2 - info, 3 - debug
+
+```bash
+LOG_LEVEL=3 PORT=5000 npm start
+```
 
 Development
 -----------
@@ -24,15 +37,3 @@ Development
 
   * As a production server we use: https://porchetta.activecell.com/
   * As a staging/development server we use: https://porchetta-staging.nodejitsu.com/ (it also can be available at porchetta.activecell.net, but I didn't find valid ssl keys.)
-
-API
----
-
-  It's so easy to start server `npm start`. Server accepts 2 additional params:
-
-  * PORT - [default: 4000] server's port
-  * LOG_LEVEL - [default: 1] [socket.io log level](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO): 1 - warn, 2 - info, 3 - debug
-
-```bash
-LOG_LEVEL=3 PORT=5000 npm start
-```
