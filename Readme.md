@@ -20,7 +20,7 @@ Development
     $ ./script/deploy-production
     $ ./script/deploy-staging
 
-  This scripts helps to manage ugly nodejitsu restrictions: (rewrite of package.json, and not ability to deploy staging.) Nodejitsu does not support node 0.10.x, be careful. (Why do we use nodejitsu? Because they only one option, heroku sucks with websoket support.)
+  This scripts helps to manage ugly nodejitsu restrictions: rewrite of package.json, and not ability to deploy staging.
 
 API
 ---
