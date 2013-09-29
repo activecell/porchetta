@@ -9,7 +9,7 @@
     "start": "node lib/index.js",
     "watch": "nodemon --quiet --watch lib lib/index.js",
     "test": "mocha",
-    "stat": "cloc lib --quiet --by-file && cloc test/*.js --quiet --by-file"
+    "stat": "cloc lib --quiet --by-file && cloc test/*.js --quiet --by-file && cloc script --quiet --by-file --lang-no-ext=Javascript"
   },
   "dependencies": {
     "socket.io": "0.9.16",
