@@ -25,11 +25,11 @@ Development
 API
 ---
 
-  It's so easy to start server `npm install && npm start`. Server accepts 2 additional params:
+  It's so easy to start server `npm start`. Server accepts 2 additional params:
 
   * PORT - [default: 4000] server's port
-  * ORIGIN - [default: headers.origin] use to set http origin header on handshake with activecell server.
+  * LOG_LEVEL - [default: 1] [socket.io log level](https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO): 1 - warn, 2 - info, 3 - debug
 
 ```bash
-ORIGIN="http://localhost:4001" PORT=5000 npm start
+LOG_LEVEL=3 PORT=5000 npm start
 ```
